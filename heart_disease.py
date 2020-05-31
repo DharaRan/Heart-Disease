@@ -244,7 +244,7 @@ fig = plt.gcf()
 fig.set_size_inches(150, 100)
 fig.savefig('tree2.png')
 
-"""# General Analyis"""
+"""# General Analysis"""
 
 #Using Pearson Correlation
 plt.figure(figsize=(20,20))
@@ -268,29 +268,8 @@ sns.distplot(heart_data_1["age"], ax=ax2,bins=50, kde=True, color='red', label="
 f.legend()
 plt.show()
 
+"""# Cholestrol  Analysis"""
 
-
-#sns.distplot(heart_data["age"])
-
-fig, ax1 = plt.subplots(figsize=(20, 8))
-#plt.style.use('fast')
-ax2 = ax1.twinx()
-chart = graph['GDP_Change'].plot(kind='bar',color = my_colors, ax=ax1)
-graph[['ism_neworder','Consumer_confidence']].plot(kind='line', marker='d', ax=ax2)
-
-ax1.set_ylabel("GDP % change",fontsize=14)
-ax2.set_ylabel("ISM(Millions $) and Confidence(base=100)",fontsize=14)
-ax1.set_ylim([-0.10,0.08])
-
-chart.set_xticklabels(chart.get_xticklabels(), rotation=85,fontsize=16)
-ax2.legend(loc=9, bbox_to_anchor=(1.02, -0.2),fontsize=14)
-
-plt.title("GDP Growth vs ISM New Orders and Consumer Confidence", y=1.02, fontsize=20)
-plt.tick_params(axis='both', which='major', labelsize=12)
-ax1.tick_params(axis='both', which='major', labelsize=12)
-# Turns off grid on the left Axis.
-ax1.grid(False)
-ax2.grid(False)
 
 ax = sns.boxplot(x="cp", y="age", hue="target",
                  data=heart_data, palette="Set3")
@@ -331,6 +310,7 @@ for p in ax.patches:
     ax.annotate('{:.0%}'.format(df6['target'].values[i]), (x, y + height + 2.5))
     i=i+1
 
+"""# Age  Analysis"""
 
 
 bins = [15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100]
@@ -366,10 +346,7 @@ bins = np.arange(20, 90, 10)
 df4 = heart_data_1.groupby(pd.cut(heart_data_1['age'], bins=bins)).agg({ 
                                                    'thalach': 'mean'})
 
-df4
-
 df4 = df4.fillna(0)
-df4
 
 f, ax = plt.subplots(figsize=(10,5))
 pt = sns.barplot(df4.index,df4['thalach'])
